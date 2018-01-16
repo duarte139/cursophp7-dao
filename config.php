@@ -6,7 +6,7 @@
 
 		if(file_exists(($filename))){
 
-			require_once($filename);
+			require_once($filename)
 
 		}
 
