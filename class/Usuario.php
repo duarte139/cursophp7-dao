@@ -40,10 +40,9 @@
 
 		if(count($resul) > 0){
 			$row = $resul[0];
-		  $this->setIdusuario($row['idusuario']);
-          $this->setDeslogin($row['deslogin']);
-          $this->setDessenha($row['dessenha']);
-          $this->setDtcadastro(new DateTime($row['dtcadastro']));
+
+			$this->setData($resul[0]);
+		  
 
 		}
 	}
@@ -64,11 +63,9 @@
 
 		if(count($resul) > 0){
 			$row = $resul[0];
-		  $this->setIdusuario($row['idusuario']);
-          $this->setDeslogin($row['deslogin']);
-          $this->setDessenha($row['dessenha']);
-          $this->setDtcadastro(new DateTime($row['dtcadastro']));
 
+			$this->setData($resul[0]);
+		 
 		}else{
 			throw new Exception("Houve um erro", 400);
 		}
@@ -95,6 +92,31 @@
        	$sql = new Sql();
        return $sql->select("SELECT * FROM tb_usuarios ORDER BY deslogin;");
        }
+
+       public function setData($data){
+
+   	  $this->setIdusuario($data['idusuario']);
+      $this->setDeslogin($data['deslogin']);
+      $this->setDessenha($data['dessenha']);
+      $this->setDtcadastro(new DateTime($data['dtcadastro']));
+
+
+       }
+
+
+       public function insert(){
+       	$sql = new Sql();
+       	$resul = $sql->select("CALL_sp_usuarios_insert(:LOGIN, :PASSWORD)", array(
+       		'LOGIN'=>$this->getDeslogin(),
+       		'PASSWORD'=>$this->getDessenha()
+
+       		));
+
+       	   if(count($resul) > 0){
+       	   	$this->setData($resul[0]);
+       	   }
+       }
+
        
 		public function __toString(){
 
