@@ -36,11 +36,23 @@
   //$aluno->insert();
   //echo $aluno;
 
+  //Update esta funcionando
+  //$usuario = new Usuario();
+  //$usuario->loadById(3);
+  //$usuario->update("professor", "pipi");
+
+ // echo $usuario;
+
+
+  //comando para deletar funcionando
+
   $usuario = new Usuario();
   $usuario->loadById(3);
-  $usuario->update("professor", "pipi");
+  $usuario->delete();
 
   echo $usuario;
+
+
 
 
 
