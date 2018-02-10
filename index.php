@@ -14,8 +14,8 @@
     
     //carrega uma lista de usuario
 
-    $lista = Usuario::getList();
-    echo json_encode($lista);
+    //$lista = Usuario::getList();
+    //echo json_encode($lista);
 
     //carrega lista usuarios pelo login
     
@@ -24,9 +24,32 @@
 
     //carrega um usuario usando o login e a senha
 
-   // $usuario = new Usuario();
-   //$usuario->login("Vinicios", "12347");
+    //$usuario = new Usuario();
+  //$usuario->login("Vinicios", "12347");
    // echo $usuario;
+
+  //$aluno = new Usuario();
+
+  //$aluno->setDeslogin("aluno");
+  //$aluno->setDessenha("@lun0");
+
+  //$aluno->insert();
+  //echo $aluno;
+
+  $usuario = new Usuario();
+  $usuario->loadById(3);
+  $usuario->update("professor", "pipi");
+
+  echo $usuario;
+
+
+
+
+
+
+
+
+  
 
 
 	 ?>

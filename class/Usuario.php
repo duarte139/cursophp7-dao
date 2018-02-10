@@ -70,19 +70,6 @@
 			throw new Exception("Houve um erro", 400);
 		}
 			  
-			  try {
-
-				login($login, $password);
-				
-				
-			} catch (Exception $e) {
-				echo json_encode(array(
-					"message"=>$e->getMessage(),
-					"line"=>$e->getLine(),
-					"file"=>$e->getFile(),
-					"code"=>$e->getCode()
-					));
-			}
 		
 
 	  }
@@ -107,8 +94,8 @@
        public function insert(){
        	$sql = new Sql();
        	$resul = $sql->select("CALL_sp_usuarios_insert(:LOGIN, :PASSWORD)", array(
-       		'LOGIN'=>$this->getDeslogin(),
-       		'PASSWORD'=>$this->getDessenha()
+       		':LOGIN'=>$this->getDeslogin(),
+       		':PASSWORD'=>$this->getDessenha()
 
        		));
 
@@ -133,6 +120,17 @@
 
 
 			
+	}
+
+	public function update($login, $password){
+		$this->setDeslogin($login);
+		$this->setDessenha($password);
+		$sql = new Sql();
+		$sql->query("UPDATE tb_usuarios SET deslogin = :LOGIN, dessenha = :PASSWORD WHERE idusuario = :ID", array(
+		':LOGIN'=>$this->getDeslogin(),
+		':PASSWORD'=>$this->getDessenha(),
+		':ID'=>$this->getIdusuario()
+		));
 	}
 
 		}
