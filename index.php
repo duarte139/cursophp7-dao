@@ -9,7 +9,7 @@
 
     	$root = new Usuario();
       $root->loadById(5);
-    	echo $root;
+    	print $root;
         
         //carrega uma lista de usuario funcionando
 

@@ -40,7 +40,8 @@
 			public function loadById($id){
 				//instanciar a classe Sql classe de conexao com o banco
 	          $sql = new Sql();
-	          $resul = $sql->select("SELECT * FROM tb_usuarios WHERE idusuario = :ID",array(":ID"=>$id));
+	          $resul = $sql->select("SELECT * FROM tb_usuarios WHERE idusuario = :ID",array(
+	          	":ID"=>$id));
 			
 
 			if(count($resul) > 0){
@@ -70,6 +71,12 @@
         //fim da primeira aula classe Usuario()-PDO-DAO-SELECT
 
 
+        public static function getList(){
+	       	$sql = new Sql();
+	       return $sql->select("SELECT * FROM tb_usuarios ORDER BY deslogin;");
+	       }
+
+
 
 
 		  public static function search($login){
@@ -79,6 +86,8 @@
 
 		  	));
 		  }
+
+
 
 		  public function login($login, $password){
 	      
@@ -100,10 +109,7 @@
 		  }
 
 
-	       public static function getList(){
-	       	$sql = new Sql();
-	       return $sql->select("SELECT * FROM tb_usuarios ORDER BY deslogin;");
-	       }
+	       //FIM SEGUNDA AULA PDO DAO LIST
 
 	       public function setData($data){
 
@@ -145,7 +151,7 @@
 		public function delete(){
 
 			$sql = new Sql();
-			$sql->query("DELETE from tb_usuarios WHERE idusuario = :ID ", ARRAY(
+			$sql->query("DELETE from tb_usuarios WHERE idusuario = :ID ", array(
 
 	         ':ID'=>$this->getIdusuario()
 
